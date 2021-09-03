@@ -10,10 +10,13 @@ namespace CsvReader
             using (CsvReader rdr = new CsvReader(filePath,true, ","))
             {
                 var hdrs = rdr.Headers;
+                string rowData = string.Empty;
                 foreach (var row in rdr.ReadLines())
                 {
                     var column = row.Key;
                     var columnValue = row.Value;
+
+                    rowData += $"{column},{columnValue}";
                 }
             }
         }
