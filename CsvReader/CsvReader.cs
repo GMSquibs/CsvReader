@@ -82,7 +82,7 @@ namespace CsvReader
             return Headers;            
         }
 
-        public Dictionary<string,string> Read()
+        public Dictionary<string,string> ReadLines()
         {
             Row = new Dictionary<string, string>();
             using (StreamReader rdr = new StreamReader(FilePath))
@@ -114,7 +114,7 @@ namespace CsvReader
                             {
                                 columns[i] = columns[i].Substring(0, columns[i].Length - 1);
                             }
-                            Row.Add(Headers[i], columns[i].Trim(new char[] { '\"' }));
+                            Row.Add(Headers[i], columns[i]);
                         }
                     }
                     return Row;
@@ -131,16 +131,14 @@ namespace CsvReader
             using (StreamReader rdr = new StreamReader(FilePath))
             {
                 string line;
-                while ((line = rdr.ReadLine()) != null && RowCount == 0)
+                while ((line = rdr.ReadLine()) != null)
                 {
-                    if (ContainsHeaders)
+                    if (ContainsHeaders && count == 0)
                     {
                         continue;
                     }
-                    else
-                    {
-                        count++;
-                    }
+               
+                    count++;                    
                 }
             }
 

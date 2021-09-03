@@ -6,14 +6,17 @@ namespace CsvReader
     {
         static void Main(string[] args)
         {
-            string filePath = "Test";
+            string filePath = "Test.csv";
             using (CsvReader rdr = new CsvReader(filePath,true, ","))
             {
                 var hdrs = rdr.Headers;
-                foreach (var row in rdr.Read())
+                string rowData = string.Empty;
+                foreach (var row in rdr.ReadLines())
                 {
                     var column = row.Key;
                     var columnValue = row.Value;
+
+                    rowData += $"{column},{columnValue}";
                 }
             }
         }
