@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace CsvReader
 {
@@ -23,7 +22,7 @@ namespace CsvReader
             if (containsHeaders)
             {
                 Headers = GetHeaders();
-            }            
+            }
         }
 
         public string[] Headers
@@ -63,10 +62,10 @@ namespace CsvReader
         }
 
         private string[] GetHeaders()
-        {            
+        {
             using (StreamReader rdr = new StreamReader(FilePath))
             {
-                string line;               
+                string line;
                 while ((line = rdr.ReadLine()) != null && RowCount == 0)
                 {
                     string[] columnHeaders = line.Split(Seperator);
@@ -76,20 +75,20 @@ namespace CsvReader
                     {
                         Headers[i] = columnHeaders[i];
                     }
-                }                
+                }
             }
 
-            return Headers;            
+            return Headers;
         }
 
-        public Dictionary<string,string> ReadLines()
+        public Dictionary<string, string> ReadLines()
         {
             Row = new Dictionary<string, string>();
             using (StreamReader rdr = new StreamReader(FilePath))
             {
                 string line;
                 while ((line = rdr.ReadLine()) != null && RowCount == 0)
-                {                    
+                {
                     if (ContainsHeaders)
                     {
                         continue;
@@ -122,7 +121,7 @@ namespace CsvReader
             }
             //returned last instance of Row
             return Row;
-            
+
         }
 
         public int GetRowCount()
@@ -137,8 +136,8 @@ namespace CsvReader
                     {
                         continue;
                     }
-               
-                    count++;                    
+
+                    count++;
                 }
             }
 
